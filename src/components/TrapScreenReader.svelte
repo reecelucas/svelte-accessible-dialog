@@ -4,11 +4,11 @@
   // Props
   export let enabled;
 
-  const hideFromScreenReader = element => {
-    if (element.hasAttribute("aria-hidden") ) {
+  const hideFromScreenReader = (element) => {
+    if (element.hasAttribute("aria-hidden")) {
       element.setAttribute("data-keep-hidden", element.getAttribute("aria-hidden"));
     }
-  
+
     element.setAttribute("aria-hidden", "true");
 
     if (element.getAttribute("inert")) {
@@ -18,7 +18,7 @@
     }
   };
 
-  const exposeToScreenReader = element => {
+  const exposeToScreenReader = (element) => {
     if (!element.hasAttribute("data-keep-inert")) {
       element.removeAttribute("inert");
     }
@@ -41,14 +41,14 @@
       // this legacy workaround can be enabled.
       return;
     }
-  
+
     // Grab all children in the `body` except for the dialog portal
     const children = document.querySelectorAll("body > *:not([data-svelte-dialog-portal])");
     children.forEach(hideFromScreenReader);
 
     return () => {
       children.forEach(exposeToScreenReader);
-    }
+    };
   });
 </script>
 

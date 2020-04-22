@@ -9,7 +9,6 @@
   "files": [
     "dist",
     "src/index.js",
-    "src/constants.js",
     "src/components"
   ],
   "scripts": {

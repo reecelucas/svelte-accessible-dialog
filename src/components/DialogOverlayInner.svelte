@@ -13,7 +13,7 @@
     onDismiss();
   }
 
-  const handleKeydown = event => {
+  const handleKeydown = (event) => {
     if (event.key === "Escape") {
       onDismiss();
     }
@@ -32,7 +32,7 @@
   }
 </style>
 
-<svelte:window on:keydown={handleKeydown}/>
+<svelte:window on:keydown={handleKeydown} />
 
 <TrapScreenReader enabled={ariaModalLegacy}>
   <TrapFocus {initialFocusElement} {returnFocusElement}>

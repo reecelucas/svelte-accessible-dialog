@@ -1,16 +1,18 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate, tick } from "svelte";
-  import { FOCUSABLE_ELEMENTS } from "../constants";
+import { onMount, onDestroy, beforeUpdate, tick } from "svelte";
 
   // Props
-  export let initialFocusElement = null;
-  export let returnFocusElement = null;
+  export let initialFocusElement;
+  export let returnFocusElement;
 
   let ref;
   let focusableChildren;
   let firstFocusableChild;
   let lastFocusableChild;
   let returnFocusElem;
+
+  const FOCUSABLE_ELEMENTS =
+    'button:not([hidden]):not([disabled]), [href]:not([hidden]), input:not([hidden]):not([type="hidden"]):not([disabled]), select:not([hidden]):not([disabled]), textarea:not([hidden]):not([disabled]), [tabindex="0"]:not([hidden]):not([disabled]), summary:not([hidden]), [contenteditable]:not([hidden]), audio[controls]:not([hidden]), video[controls]:not([hidden])';
 
   beforeUpdate(() => {
     // `beforeUpdate` runs before `onMount`, so it's the safest place to set the
@@ -26,14 +28,14 @@
     focusableChildren = ref.querySelectorAll(FOCUSABLE_ELEMENTS);
     firstFocusableChild = focusableChildren[0];
     lastFocusableChild = focusableChildren[focusableChildren.length - 1];
-  
+
     // Wait for children to mount before trying to focus `initialFocusElement`
     await tick();
 
     if (initialFocusElement) {
       initialFocusElement.focus();
     } else {
-      const initialFocusElem = ref.querySelector('[autofocus]') || firstFocusableChild;
+      const initialFocusElem = ref.querySelector("[autofocus]") || firstFocusableChild;
       initialFocusElem.focus();
     }
   });
@@ -44,21 +46,19 @@
     }
   });
 
-  const handleKeydown = event => {
+  const handleKeydown = (event) => {
     if (event.key !== "Tab") {
       return;
     }
 
-    const focusedElement = document.activeElement;
-
     if (event.shiftKey) {
-      // Handle tab + shift
-      if (focusedElement === firstFocusableChild) {
+      // Handle shift + tab
+      if (document.activeElement === firstFocusableChild) {
         event.preventDefault();
         lastFocusableChild.focus();
       }
     } else {
-      if (focusedElement === lastFocusableChild) {
+      if (document.activeElement === lastFocusableChild) {
         event.preventDefault();
         firstFocusableChild.focus();
       }
@@ -66,7 +66,7 @@
   };
 </script>
 
-<svelte:window on:keydown={handleKeydown}/>
+<svelte:window on:keydown={handleKeydown} />
 
 <div bind:this={ref}>
   <slot />

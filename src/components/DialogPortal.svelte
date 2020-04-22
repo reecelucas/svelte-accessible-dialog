@@ -14,7 +14,7 @@
 
     return () => {
       document.body.removeChild(portal);
-    }
+    };
   });
 </script>
 
