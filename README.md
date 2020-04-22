@@ -46,7 +46,7 @@ npm install svelte-accessible-dialog
 
 <DialogOverlay {isOpen} onDismiss={close}>
   <DialogContent aria-label="Announcement">
-    <button onClick={close}>Close</button>
+    <button on:click={close}>Close</button>
     <p>I am a dialog</p>
   </DialogContent>
 </DialogOverlay>
@@ -76,7 +76,7 @@ By default, the first focusable element will receive focus when the dialog opens
 
 <DialogOverlay {isOpen} {initialFocusElement} onDismiss={close}>
   <DialogContent aria-label="Announcement">
-    <button onClick={close}>Close</button>
+    <button on:click={close}>Close</button>
     <label>
       Name: <input type="text" bind:this={initialFocusElement} />
     </label>
@@ -112,7 +112,7 @@ See the [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-
 
 <DialogOverlay {isOpen} {returnFocusElement} onDismiss={close}>
   <DialogContent aria-label="Announcement">
-    <button onClick={close}>Close</button>
+    <button on:click={close}>Close</button>
     <p>I am a dialog</p>
   </DialogContent>
 </DialogOverlay>
@@ -143,7 +143,7 @@ See the [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-
 
 <DialogOverlay {isOpen} ariaModalLegacy={true} onDismiss={close}>
   <DialogContent aria-label="Announcement">
-    <button onClick={close}>Close</button>
+    <button on:click={close}>Close</button>
     <p>I am a dialog</p>
   </DialogContent>
 </DialogOverlay>
