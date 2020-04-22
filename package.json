@@ -1,6 +1,6 @@
 {
   "name": "svelte-accessible-dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An accessible dialog component for Svelte apps",
   "author": "Reece Lucas <reecelucas@sky.com>",
   "svelte": "src/index.js",
