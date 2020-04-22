@@ -1,6 +1,6 @@
 # svelte-accessible-dialog
 
-An accessible dialog component for Svelte apps.
+An accessible dialog component for Svelte apps. [Demo](https://svelte.dev/repl/6c6729de07b04cba8ea3fd413c013137).
 
 [![Coverage Status](https://coveralls.io/repos/github/reecelucas/svelte-accessible-dialog/badge.svg?branch=master)](https://coveralls.io/github/reecelucas/svelte-accessible-dialog?branch=master)
 [![Build Status](https://travis-ci.org/reecelucas/svelte-accessible-dialog.svg?branch=master)](https://travis-ci.org/reecelucas/svelte-accessible-dialog)
