@@ -241,7 +241,7 @@ Until fairly recently, keeping a screen reader within an active dialog was diffi
 
 [ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1/) introduced the `aria-modal` attribute. `aria-modal` indicates to screen readers that only content contained within a dialog with `aria-modal="true"` should be accessible to the user. Modern screen readers respect this attribute, so `svelte-accessible-dialog` does not implement the legacy workaround by default.
 
-If support for `aria-modal` is inadequate for your app, you can pass `ariaModalLegacy={true}` to `DialogOverlay` to enable from the legacy workaround.
+If support for `aria-modal` is inadequate for your app, you can pass `ariaModalLegacy={true}` to `DialogOverlay` to enable the legacy workaround.
 
 ### Labelling
 
