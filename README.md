@@ -2,6 +2,12 @@
 
 An accessible dialog component for Svelte apps.
 
+[![Coverage Status](https://coveralls.io/repos/github/reecelucas/svelte-accessible-dialog/badge.svg?branch=master)](https://coveralls.io/github/reecelucas/svelte-accessible-dialog?branch=master)
+[![Build Status](https://travis-ci.org/reecelucas/svelte-accessible-dialog.svg?branch=master)](https://travis-ci.org/reecelucas/svelte-accessible-dialog)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/svelte-accessible-dialog.svg)
+![npm](https://img.shields.io/npm/v/svelte-accessible-dialog.svg)
+![GitHub](https://img.shields.io/github/license/reecelucas/svelte-accessible-dialog.svg)
+
 * [Installation](#installation)
 * [Usage](#usage)
 * [Styling](#styling)
