@@ -1,0 +1,75 @@
+{
+  "name": "svelte-accessible-dialog",
+  "version": "1.0.0",
+  "description": "An accessible dialog component for Svelte apps",
+  "author": "Reece Lucas <reecelucas@sky.com>",
+  "svelte": "src/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src/index.js",
+    "src/constants.js",
+    "src/components"
+  ],
+  "scripts": {
+    "start": "start-storybook -p 3000",
+    "build": "rollup -c",
+    "test": "jest src/__tests__/",
+    "test:watch": "jest test --watch",
+    "test:cover": "yarn test --coverage",
+    "lint": "eslint \"src/**/*.{js,svelte}\"",
+    "format": "prettier --write \"src/**/*.js\"",
+    "coveralls": "cat coverage/lcov.info | node node_modules/.bin/coveralls",
+    "prepublishOnly": "yarn lint && yarn test && yarn build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "@storybook/svelte": "^5.3.18",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/svelte": "^3.0.0",
+    "babel-jest": "^25.3.0",
+    "babel-loader": "^8.1.0",
+    "coveralls": "^3.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "husky": "^1.3.1",
+    "jest": "^25.3.0",
+    "jest-transform-svelte": "^2.1.1",
+    "prettier": "^2.0.4",
+    "rollup": "^2.6.1",
+    "rollup-plugin-svelte": "^5.2.1",
+    "svelte": "^3.20.1",
+    "svelte-loader": "^2.13.6"
+  },
+  "keywords": [
+    "dialog",
+    "modal",
+    "popup",
+    "alert",
+    "prompt",
+    "accessible",
+    "accessibility",
+    "a11y",
+    "svelte",
+    "svelte3",
+    "sveltejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reecelucas/svelte-accessible-dialog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reecelucas/svelte-accessible-dialog/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/reecelucas/svelte-accessible-dialog#readme",
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint && yarn format && yarn test"
+    }
+  }
+}
