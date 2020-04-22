@@ -5,6 +5,9 @@
     const scrollBarWidth =
       window.innerWidth - document.documentElement.clientWidth;
 
+    const bodyPaddingRight =
+      parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right')) || 0;
+
     // 1. Fixes a bug in iOS and desktop Safari whereby setting `overflow: hidden` on
     //    the html/body does not prevent scrolling.
     // 2. Fixes a bug in desktop Safari where `overflowY` does not prevent scroll if an
@@ -13,7 +16,7 @@
     document.documentElement.style.overflow = "hidden"; // [2]
     document.body.style.position = "relative"; // [1]
     document.body.style.overflow = "hidden"; // [2]
-    document.body.style.paddingRight = `${scrollBarWidth}px`;
+    document.body.style.paddingRight = `${bodyPaddingRight + scrollBarWidth}px`;
 
     return () => {
       document.documentElement.style.position = "";
