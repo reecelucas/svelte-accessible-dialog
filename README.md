@@ -193,7 +193,7 @@ See the [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-
 </DialogOverlay>
 ```
 
-### Inline styles
+### Inline Styles
 
 ```html
 <DialogOverlay style="z-index: 10">
@@ -235,7 +235,7 @@ WAI-ARIA: <https://www.w3.org/TR/wai-aria-practices-1.2/#dialog_modal>
 
 It's recommended to have at least one tabbable element in the `DialogContent`. Ideally, the first element in the dialog should be a close button. If no tabbable elements are found, the dialog content element itself will receive focus.
 
-### Hiding Page Content From Screen Readers
+### Hiding Page Content from Screen Readers
 
 Until fairly recently, keeping a screen reader within an active dialog was difficult. A focus trap prevents focus from leaving a dialog, but does nothing to stop a wandering virtual cursor. A common solution to this problem was to set the `aria-hidden` and `inert` attributes on all elements outside of the active dialog.
 
@@ -272,7 +272,7 @@ If a design doesn't include a visible label on the screen, you need to provide a
 </DialogContent>
 ```
 
-### Z-index
+## Z-index
 
 `DialogOverlay` does not set a `z-index`. It depends on DOM order to be on top of the page content (it's inserted at the end of the document when it's opened). If you're fighting `z-index` wars, make sure to add a `z-index` to `DialogOverlay`.
 

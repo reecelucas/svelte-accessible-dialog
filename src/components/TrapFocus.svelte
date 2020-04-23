@@ -1,5 +1,5 @@
 <script>
-import { onMount, onDestroy, beforeUpdate, tick } from "svelte";
+  import { onMount, onDestroy, beforeUpdate, tick } from "svelte";
 
   // Props
   export let initialFocusElement;
