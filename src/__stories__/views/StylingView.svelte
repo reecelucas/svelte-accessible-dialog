@@ -18,16 +18,16 @@
     background-color: pink;
   }
 
-  :global(.container [data-svelte-dialog-content]) {
+  :global([data-svelte-dialog-content].content) {
     background-color: green;
   }
 </style>
 
-<ScrollWrapper class="container">
+<ScrollWrapper>
   <button on:click={openDialog}>Open Dialog</button>
 
   <DialogOverlay {isOpen} onDismiss={closeDialog} class="overlay">
-    <DialogContent style="border: 4px solid black">
+    <DialogContent class="content" style="border: 4px solid black">
       <button on:click={closeDialog}>close modal</button>
       <h2>I am a dialog</h2>
     </DialogContent>

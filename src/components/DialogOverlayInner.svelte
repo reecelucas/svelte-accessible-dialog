@@ -21,7 +21,7 @@
 </script>
 
 <style>
-  :global([data-svelte-dialog-overlay]) {
+  div {
     background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;

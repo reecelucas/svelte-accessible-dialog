@@ -6,6 +6,7 @@
   export let returnFocusElement;
 
   let ref;
+  let mounted = false;
   let focusableChildren;
   let firstFocusableChild;
   let lastFocusableChild;
@@ -15,16 +16,19 @@
     'button:not([hidden]):not([disabled]), [href]:not([hidden]), input:not([hidden]):not([type="hidden"]):not([disabled]), select:not([hidden]):not([disabled]), textarea:not([hidden]):not([disabled]), [tabindex="0"]:not([hidden]):not([disabled]), summary:not([hidden]), [contenteditable]:not([hidden]), audio[controls]:not([hidden]), video[controls]:not([hidden])';
 
   beforeUpdate(() => {
-    // `beforeUpdate` runs before `onMount`, so it's the safest place to set the
-    // previously focused element (i.e. the element that invoked the dialog). This is
-    // especially important when an element in the dialog content contains an `autofocus`
-    // attribute. In this scenario, the browser sets `document.activeElement` to the
-    // `autofocus` element as soon as the dialog mounts to the DOM, before we can capture
-    // the previously focused element.
-    returnFocusElem = returnFocusElement || document.activeElement;
+    if (!mounted) {
+      // `beforeUpdate` runs before `onMount`, so it's the safest place to set the
+      // previously focused element (i.e. the element that invoked the dialog). This is
+      // especially important when an element in the dialog content contains the `autofocus`
+      // attribute. In this scenario, the browser sets `document.activeElement` to the
+      // `autofocus` element as soon as the dialog mounts to the DOM, before we can capture
+      // the previously focused element.
+      returnFocusElem = returnFocusElement || document.activeElement;
+    }
   });
 
   onMount(async () => {
+    mounted = true;
     focusableChildren = ref.querySelectorAll(FOCUSABLE_ELEMENTS);
     firstFocusableChild = focusableChildren[0];
     lastFocusableChild = focusableChildren[focusableChildren.length - 1];

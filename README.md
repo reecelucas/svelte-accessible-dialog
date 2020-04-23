@@ -151,29 +151,7 @@ See the [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-
 
 ## Styling
 
-### :global with a wrapper
-
-```html
-<style>
-  :global(.dialog [data-svelte-dialog-overlay]) {
-    z-index: 10;
-  }
-
-  :global(.dialog [data-svelte-dialog-content]) {
-    border: 2px solid #000;
-  }
-</style>
-
-<div class="dialog">
-  <DialogOverlay>
-    <DialogContent>
-      <p>I am a dialog</p>
-    </DialogContent>
-  </DialogOverlay>
-</div>
-```
-
-### :global with a class
+### :global
 
 ```html
 <style>

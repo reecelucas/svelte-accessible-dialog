@@ -1,5 +1,5 @@
 <style>
-  :global([data-svelte-dialog-content]) {
+  div {
     background-color: #fff;
     margin: 15vh auto;
     outline: none;
