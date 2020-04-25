@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { DialogOverlay, DialogContent } from "../../";
   import ScrollWrapper from "../helpers/ScrollWrapper.svelte";
 
@@ -11,18 +12,17 @@
   const openDialog = () => {
     isOpen = true;
   };
+
+  onMount(() => {
+    const rootNode = document.getElementById("root");
+
+    rootNode.setAttribute("aria-hidden", "true")
+    rootNode.setAttribute("inert", "true")
+  });
 </script>
 
-<ScrollWrapper>
+<ScrollWrapper >
   <button on:click={openDialog}>Open Dialog</button>
-
-  <div aria-hidden="true">
-    Should always be hidden from screen readers
-  </div>
-
-  <div inert="true">
-    Should always be inert
-  </div>
 
   <DialogOverlay {isOpen} onDismiss={closeDialog} ariaModalLegacy={true}>
     <DialogContent>

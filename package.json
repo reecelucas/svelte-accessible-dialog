@@ -14,7 +14,7 @@
   "scripts": {
     "start": "start-storybook -p 3000",
     "build": "rollup -c",
-    "test": "jest src/__tests__/",
+    "test": "BABEL_ENV=test jest src/__tests__/",
     "test:watch": "jest test --watch",
     "test:cover": "yarn test --coverage",
     "lint": "eslint \"src/**/*.{js,svelte}\"",

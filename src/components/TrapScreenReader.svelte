@@ -13,9 +13,9 @@
 
     if (element.getAttribute("inert")) {
       element.setAttribute("data-keep-inert", "");
-    } else {
-      element.setAttribute("inert", "true");
     }
+    
+    element.setAttribute("inert", "true");
   };
 
   const exposeToScreenReader = (element) => {
