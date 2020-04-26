@@ -38,6 +38,9 @@
     }
   });
 
+  // We can't test keyboard semantics in `jsdom`, so it doesn't
+  // make sense to include this function in the coverage report.
+  // istanbul ignore next
   const handleKeydown = (event) => {
     if (event.key !== "Tab") {
       return;
