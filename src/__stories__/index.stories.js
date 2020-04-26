@@ -1,5 +1,6 @@
 import DefaultView from "./views/DefaultView.svelte";
 import InitialFocusView from "./views/InitialFocusView.svelte";
+import DialogContentFocusView from "./views/DialogContentFocusView.svelte";
 import ReturnFocusView from "./views/ReturnFocusView.svelte";
 import AutoFocusElementView from "./views/AutoFocusElementView.svelte";
 import AriaModalLegacyView from "./views/AriaModalLegacyView.svelte";
@@ -15,6 +16,10 @@ export const Default = () => ({
 
 export const InitialFocusElement = () => ({
   Component: InitialFocusView,
+});
+
+export const DialogContentFocus = () => ({
+  Component: DialogContentFocusView,
 });
 
 export const ReturnFocusElement = () => ({

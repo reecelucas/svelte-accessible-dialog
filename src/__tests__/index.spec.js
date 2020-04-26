@@ -134,6 +134,14 @@ describe("DialogOverlay", () => {
     expect(document.activeElement.textContent.trim()).toBe("Useless Button");
   });
 
+  test("assigns focus to `DialogContent` when no tabbable elements are present", async () => {
+    await renderAndWaitForTick(DialogInitialFocus, {
+      includeTabbableChildren: false,
+    });
+
+    expect(document.activeElement).toHaveAttribute("role", "dialog");
+  });
+
   test("returns focus correctly when closed", async () => {
     const { getByText, getByTestId } = await renderAndWaitForTick(DialogBasic);
 
@@ -199,7 +207,7 @@ describe("DialogOverlay", () => {
 
     const sibling = container.firstElementChild;
 
-    sibling.setAttribute("aria-hidden", "true");
+    sibling.setAttribute("aria-hidden", "false");
     sibling.setAttribute("inert", "true");
 
     // Open dialog
@@ -207,16 +215,12 @@ describe("DialogOverlay", () => {
 
     expect(sibling.getAttribute("aria-hidden")).toBe("true");
     expect(sibling.getAttribute("inert")).toBe("true");
-    expect(sibling.getAttribute("data-keep-hidden")).toBe("true");
-    expect(sibling.getAttribute("data-keep-inert")).toBe("");
 
     // Close dialog
     await fireEvent.click(getByText("Close Dialog"));
 
-    expect(sibling.getAttribute("aria-hidden")).toBe("true");
+    expect(sibling.getAttribute("aria-hidden")).toBe("false");
     expect(sibling.getAttribute("inert")).toBe("true");
-    expect(sibling.hasAttribute("data-keep-hidden")).toBe(false);
-    expect(sibling.hasAttribute("data-keep-inert")).toBe(false);
   });
 
   test("does not add `aria-hidden` and `inert` attributes to siblings when `ariaModalLegacy` is false", async () => {
@@ -281,7 +285,7 @@ describe("DialogContent", () => {
     const dialog = getByRole("dialog");
 
     expect(dialog).toBeInTheDocument();
-    expect(dialog).toHaveAttribute("tab-index", "-1");
+    expect(dialog).toHaveAttribute("tabindex", "-1");
     expect(dialog).toHaveAttribute("aria-modal", "true");
   });
 

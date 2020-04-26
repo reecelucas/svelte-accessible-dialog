@@ -13,7 +13,7 @@
   data-svelte-dialog-content
   aria-modal="true"
   role="dialog"
-  tab-index="-1"
+  tabindex="-1"
 >
   <slot />
 </div>

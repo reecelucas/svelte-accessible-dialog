@@ -13,7 +13,7 @@
 
   onMount(async () => {
     returnFocusElem = returnFocusElement || document.activeElement;
-    tabbableChildren = [...ref.querySelectorAll("*")].filter(node => node.tabIndex >= 0);
+    tabbableChildren = [...ref.querySelectorAll("*")].filter((node) => node.tabIndex >= 0);
     firstTabbableChild = tabbableChildren[0];
     lastTabbableChild = tabbableChildren[tabbableChildren.length - 1];
 
@@ -23,7 +23,11 @@
     if (initialFocusElement) {
       initialFocusElement.focus();
     } else {
-      const initialFocusElem = ref.querySelector("[autofocus]") || firstTabbableChild;
+      const initialFocusElem =
+        ref.querySelector("[autofocus]") ||
+        firstTabbableChild ||
+        ref.querySelector("[data-svelte-dialog-content]");
+
       initialFocusElem.focus();
     }
   });
@@ -37,6 +41,10 @@
   const handleKeydown = (event) => {
     if (event.key !== "Tab") {
       return;
+    }
+
+    if (tabbableChildren.length === 0) {
+      event.preventDefault();
     }
 
     if (event.shiftKey) {

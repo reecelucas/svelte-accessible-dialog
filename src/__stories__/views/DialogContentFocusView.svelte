@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from "svelte";
   import { DialogOverlay, DialogContent } from "../../";
   import ScrollWrapper from "../helpers/ScrollWrapper.svelte";
 
@@ -12,22 +11,21 @@
   const openDialog = () => {
     isOpen = true;
   };
-
-  onMount(() => {
-    const rootNode = document.getElementById("root");
-
-    rootNode.setAttribute("aria-hidden", "false")
-    rootNode.setAttribute("inert", "true")
-  });
 </script>
 
-<ScrollWrapper >
+<style>
+  :global([data-svelte-dialog-content].content):focus {
+    background-color: pink;
+  }
+</style>
+
+<ScrollWrapper>
   <button on:click={openDialog}>Open Dialog</button>
 
-  <DialogOverlay {isOpen} onDismiss={closeDialog} ariaModalLegacy={true}>
-    <DialogContent>
-      <button on:click={closeDialog}>close modal</button>
+  <DialogOverlay {isOpen} onDismiss={closeDialog}>
+    <DialogContent class="content">
       <h2>I am a dialog</h2>
+      <p>I have no tabbable children</p>
     </DialogContent>
   </DialogOverlay>
 </ScrollWrapper>

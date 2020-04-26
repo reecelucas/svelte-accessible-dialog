@@ -4,32 +4,29 @@
   // Props
   export let enabled;
 
-  const hideFromScreenReader = (element) => {
-    if (element.hasAttribute("aria-hidden")) {
-      element.setAttribute("data-keep-hidden", element.getAttribute("aria-hidden"));
-    }
+  let originalAttributes = [];
 
-    element.setAttribute("aria-hidden", "true");
+  const hideFromScreenReader = (node) => {
+    originalAttributes.push({
+      ariaHidden: node.getAttribute("aria-hidden"),
+      inert: node.getAttribute("inert"),
+    });
 
-    if (element.getAttribute("inert")) {
-      element.setAttribute("data-keep-inert", "");
-    }
-    
-    element.setAttribute("inert", "true");
+    node.setAttribute("aria-hidden", "true");
+    node.setAttribute("inert", "true");
   };
 
-  const exposeToScreenReader = (element) => {
-    if (!element.hasAttribute("data-keep-inert")) {
-      element.removeAttribute("inert");
+  const exposeToScreenReader = (node, i) => {
+    const { ariaHidden, inert } = originalAttributes[i];
+
+    if (!ariaHidden) {
+      node.removeAttribute("aria-hidden");
+    } else {
+      node.setAttribute("aria-hidden", ariaHidden);
     }
 
-    element.removeAttribute("data-keep-inert");
-
-    if (element.getAttribute("data-keep-hidden")) {
-      element.setAttribute("aria-hidden", element.getAttribute("data-keep-hidden"));
-      element.removeAttribute("data-keep-hidden");
-    } else {
-      element.removeAttribute("aria-hidden");
+    if (!inert) {
+      node.removeAttribute("inert");
     }
   };
 
