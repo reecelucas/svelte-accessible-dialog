@@ -11,25 +11,25 @@
   let lastTabbableChild;
   let returnFocusElem;
 
-  onMount(async () => {
+  onMount(() => {
     returnFocusElem = returnFocusElement || document.activeElement;
     tabbableChildren = [...ref.querySelectorAll("*")].filter((node) => node.tabIndex >= 0);
     firstTabbableChild = tabbableChildren[0];
     lastTabbableChild = tabbableChildren[tabbableChildren.length - 1];
 
     // Wait for children to mount before trying to focus `initialFocusElement`
-    await tick();
+    tick().then(() => {
+      if (initialFocusElement) {
+        initialFocusElement.focus();
+      } else {
+        const initialFocusElem =
+          ref.querySelector("[autofocus]") ||
+          firstTabbableChild ||
+          ref.querySelector("[data-svelte-dialog-content]");
 
-    if (initialFocusElement) {
-      initialFocusElement.focus();
-    } else {
-      const initialFocusElem =
-        ref.querySelector("[autofocus]") ||
-        firstTabbableChild ||
-        ref.querySelector("[data-svelte-dialog-content]");
-
-      initialFocusElem.focus();
-    }
+        initialFocusElem.focus();
+      }
+    });
   });
 
   onDestroy(() => {
